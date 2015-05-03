@@ -15,6 +15,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -28,24 +32,18 @@ public class RegisterServlet extends HttpServlet {
     RemotePlayerService remotePlayerService;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            StringBuffer sb = new StringBuffer();
-            try
-            {
-                BufferedReader reader = request.getReader();
-                String line = null;
-                while ((line = reader.readLine()) != null)
-                {
-                    sb.append(line);
-                }
-            } catch (Exception e) { e.printStackTrace(); }
-            JSONParser parser = new JSONParser();
-            JSONObject joPlayer = null;
-            try
-            {
-                joPlayer = (JSONObject) parser.parse(sb.toString());
-            } catch (ParseException e) { e.printStackTrace(); }
 
-            String firstname = (String) joPlayer.get("firstname");
+            JSONObject jObj = new JSONObject(request.getParameter("player")); // this parses the json
+            Iterator it = jObj.keys(); //gets all the keys
+            Map<String,String> map=new HashMap<>();
+            while(it.hasNext())
+            {
+                String key = (String) it.next(); // get key
+                Object o = jObj.get(key); // get value
+                map.put(key, (String) o);
+            }
+
+            String firstname = (String) map.get("firstname");
             callCreatePlayer(firstname);
             response.setContentType("text/html");
             PrintWriter out = response.getWriter();

@@ -1,12 +1,8 @@
 angular.module('registerApp',[])
-    .controller('RegController',['$http', function($scope,$http){
-
+    .controller('RegController',function($scope,$http){
       $scope.player={};
         $scope.submit=function(){
           console.log("called method");
-          $http.jsonp('/web/register',$scope.player).success(function (data)
-          {
-              $scope.status=data;
-          });
+          $http.jsonp('http://localhost:8080/web/register',$scope.player);
       };
-}]);
+});
