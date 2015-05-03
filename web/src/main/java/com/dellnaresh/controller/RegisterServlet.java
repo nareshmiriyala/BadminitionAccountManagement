@@ -15,10 +15,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -32,19 +28,31 @@ public class RegisterServlet extends HttpServlet {
     RemotePlayerService remotePlayerService;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-
-            JSONObject jObj = new JSONObject(request.getParameter("player")); // this parses the json
-            Iterator it = jObj.keys(); //gets all the keys
-            Map<String,String> map=new HashMap<>();
-            while(it.hasNext())
+            StringBuffer sb = new StringBuffer();
+            try
             {
-                String key = (String) it.next(); // get key
-                Object o = jObj.get(key); // get value
-                map.put(key, (String) o);
-            }
+                BufferedReader reader = request.getReader();
+                String line = null;
+                while ((line = reader.readLine()) != null)
+                {
+                    sb.append(line);
+                }
+            } catch (Exception e) { e.printStackTrace(); }
+            JSONParser parser = new JSONParser();
+            JSONObject joPlayer = null;
+//            try
+//            {
+                joPlayer = new JSONObject(sb.toString());
+//            } catch (ParseException e) { e.printStackTrace(); }
 
-            String firstname = (String) map.get("firstname");
-            callCreatePlayer(firstname);
+            String firstname = (String) joPlayer.get("firstname");
+            String lastName = (String) joPlayer.get("lastname");
+            String password = (String) joPlayer.get("password");
+            String email = (String) joPlayer.get("email");
+            String contactno=(String)joPlayer.get("contactno");
+            String address=(String)joPlayer.get("address");
+
+            callCreatePlayer(firstname,lastName,email,contactno,address,password);
             response.setContentType("text/html");
             PrintWriter out = response.getWriter();
             out.write("A new user " + firstname + " has been created.");
@@ -56,14 +64,14 @@ public class RegisterServlet extends HttpServlet {
         }
     }
 
-    private void callCreatePlayer(String firstName) throws Exception {
+    private void callCreatePlayer(String firstName ,String lastName,String email,String conactno,String address,String password) throws Exception {
         Player player = new Player();
         player.setActive((byte) 1);
-        player.setAddress("64 Brady Road");
+        player.setAddress(address);
         player.setContactNo(466097852l);
         player.setFirstName(firstName);
-        player.setLastName("Chandra");
-        player.setEmailID("ncmiriyala@gmail.com");
+        player.setLastName(lastName);
+        player.setEmailID(email);
         player.setJoiningDate(new Timestamp(new Date().getTime()));
 
         remotePlayerService.createPlayer(player);

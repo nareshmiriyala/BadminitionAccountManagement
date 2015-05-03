@@ -3,6 +3,11 @@ angular.module('registerApp',[])
       $scope.player={};
         $scope.submit=function(){
           console.log("called method");
-          $http.jsonp('http://localhost:8080/web/register',$scope.player);
+            $http({
+                method: 'POST',
+                url: 'http://localhost:8080/web/register',
+                headers: {'Content-Type': 'application/json'},
+                data:  $scope.player
+            });
       };
 });
