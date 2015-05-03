@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>Persistence</ID>
+  <OriginalElement>JavaeeElement:/c06eb5e7/BadmintionAccountPU/ejb/jpa/JPA/PersistenceModel</OriginalElement>
+  <nodes>
+    <node x="-351.34205607476633" y="80.09345794392524">Player#file://C:/Naresh Data/workspace/Java Workspace/BadmintionAccountWorkSpace/BadminitionAccountManagement/ejb/src/main/java/com/dellnaresh/db/entities/Player.java</node>
+    <node x="34.58738317757002" y="344.9345794392524">BadimintionHire#file://C:/Naresh Data/workspace/Java Workspace/BadmintionAccountWorkSpace/BadminitionAccountManagement/ejb/src/main/java/com/dellnaresh/db/entities/BadimintionHire.java</node>
+    <node x="458.8303738317758" y="178.9607476635514">Badminitionaccount#file://C:/Naresh Data/workspace/Java Workspace/BadmintionAccountWorkSpace/BadminitionAccountManagement/ejb/src/main/java/com/dellnaresh/db/entities/Badminitionaccount.java</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="BadimintionHire#file://C:/Naresh Data/workspace/Java Workspace/BadmintionAccountWorkSpace/BadminitionAccountManagement/ejb/src/main/java/com/dellnaresh/db/entities/BadimintionHire.java" target="Badminitionaccount#file://C:/Naresh Data/workspace/Java Workspace/BadmintionAccountWorkSpace/BadminitionAccountManagement/ejb/src/main/java/com/dellnaresh/db/entities/Badminitionaccount.java">
+      <point x="53.5" y="-84.0" />
+      <point x="258.25" y="491.0" />
+      <point x="276.5" y="491.0" />
+      <point x="276.5" y="213.0" />
+      <point x="263.25" y="213.0" />
+      <point x="58.5" y="94.0" />
+    </edge>
+    <edge source="BadimintionHire#file://C:/Naresh Data/workspace/Java Workspace/BadmintionAccountWorkSpace/BadminitionAccountManagement/ejb/src/main/java/com/dellnaresh/db/entities/BadimintionHire.java" target="Player#file://C:/Naresh Data/workspace/Java Workspace/BadmintionAccountWorkSpace/BadminitionAccountManagement/ejb/src/main/java/com/dellnaresh/db/entities/Player.java">
+      <point x="-53.5" y="-84.0" />
+      <point x="151.25" y="491.0" />
+      <point x="133.0" y="491.0" />
+      <point x="0.0" y="114.0" />
+    </edge>
+    <edge source="Player#file://C:/Naresh Data/workspace/Java Workspace/BadmintionAccountWorkSpace/BadminitionAccountManagement/ejb/src/main/java/com/dellnaresh/db/entities/Player.java" target="Badminitionaccount#file://C:/Naresh Data/workspace/Java Workspace/BadmintionAccountWorkSpace/BadminitionAccountManagement/ejb/src/main/java/com/dellnaresh/db/entities/Badminitionaccount.java">
+      <point x="0.0" y="-114.0" />
+      <point x="133.0" y="213.0" />
+      <point x="146.25" y="213.0" />
+      <point x="-58.5" y="94.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.7599431818181818" x="161.0" y="342.0" />
+  <SelectedNodes>
+    <node>BadimintionHire#file://C:/Naresh Data/workspace/Java Workspace/BadmintionAccountWorkSpace/BadminitionAccountManagement/ejb/src/main/java/com/dellnaresh/db/entities/BadimintionHire.java</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Properties</Category>
+    <Category>Embeddables</Category>
+    <Category>Superclasses</Category>
+  </Categories>
+</Diagram>
+
