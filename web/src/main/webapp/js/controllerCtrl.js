@@ -1,12 +1,3 @@
-/**
- * @ngdoc controller
- * @name controller
- *
- * @description
- * _Please update the description and dependencies._
- *
- * @requires $scope
- * */
 angular.module('registerApp',[])
     .controller('RegController',['$http', function($scope,$http){
 
