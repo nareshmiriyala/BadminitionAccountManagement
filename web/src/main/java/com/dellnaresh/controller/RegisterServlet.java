@@ -49,7 +49,7 @@ public class RegisterServlet extends HttpServlet {
             String lastName = (String) joPlayer.get("lastname");
             String password = (String) joPlayer.get("password");
             String email = (String) joPlayer.get("email");
-            String contactno=(String)joPlayer.get("contactno");
+            Integer contactno=(Integer)joPlayer.get("contactno");
             String address=(String)joPlayer.get("address");
 
             callCreatePlayer(firstname,lastName,email,contactno,address,password);
@@ -64,11 +64,11 @@ public class RegisterServlet extends HttpServlet {
         }
     }
 
-    private void callCreatePlayer(String firstName ,String lastName,String email,String conactno,String address,String password) throws Exception {
+    private void callCreatePlayer(String firstName ,String lastName,String email,long conactno,String address,String password) throws Exception {
         Player player = new Player();
         player.setActive((byte) 1);
         player.setAddress(address);
-        player.setContactNo(466097852l);
+        player.setContactNo(conactno);
         player.setFirstName(firstName);
         player.setLastName(lastName);
         player.setEmailID(email);
