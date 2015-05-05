@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+     http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+    <display-name>Player Login</display-name>
+   <welcome-file-list>
+       <welcome-file>/auth/index.html</welcome-file>
+   </welcome-file-list>
+    <security-constraint>
+        <display-name>SecurityConstraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>HTMLAuth</web-resource-name>
+            <url-pattern>/register</url-pattern>
+            <url-pattern>/auth/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Manager</role-name>
+        </auth-constraint>
+
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/login.html</form-login-page>
+            <form-error-page>/errorpage.html</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <role-name>Manager</role-name>
+    </security-role>
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+</web-app>

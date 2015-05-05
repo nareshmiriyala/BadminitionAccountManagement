@@ -1,11 +1,9 @@
-<html ng-app="registerApp">
+<html>
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Player Registration Page</title>
-    <script src="js/angular/angular.js"></script>
-    <script src="js/controllerCtrl.js"></script>
+    <title>Player Login Page</title>
     <link href="css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="css/app.css"/>
 
@@ -15,8 +13,7 @@
     <div class="row">
         <!--<div class="col-md-offset-5 col-md-3">-->
         <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-            <div class="form-login">
-                <form role="form" ng-submit="submit()" ng-controller="RegController">
+                <form role="form" action="j_security_check" method="post" >
 
                     <h2>Please Sign In</h2>
                     <hr class="colorgraph"/>
@@ -24,18 +21,18 @@
                         <div class="col-xs-12 col-sm-6 col-md-6">
 
                             <div class="form-group">
-                                <input type="text" name="user_name" id="userName"
+                                <input type="text" name="j_username" id="userName"
                                        class="form-control input-lg chat-input"
-                                       placeholder="User Name" tabindex="1" ng-model="player.username" required/>
+                                       placeholder="User Name" tabindex="1" required/>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <input type="text" name="password" id="userPassword"
+                                <input type="text" name="j_password" id="userPassword"
                                        class="form-control input-lg"
-                                       placeholder="password" tabindex="2" ng-model="player.password" required/>
+                                       placeholder="password" tabindex="2" required/>
                             </div>
                         </div>
                     </div>
@@ -46,14 +43,12 @@
                                                             class="btn btn-primary btn-block btn-lg" tabindex="3"/>
                      </div>
                  </div>
-                <!--<a href="#" class="btn btn-primary btn-md">login <i class="fa fa-sign-in"></i></a>-->
             </span>
 
                     </div>
                 </form>
             </div>
 
-        </div>
     </div>
 
 </div>

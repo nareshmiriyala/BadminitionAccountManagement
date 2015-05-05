@@ -8,6 +8,8 @@
         <class>com.dellnaresh.common.remote.entities.BadimintionHire</class>
         <class>com.dellnaresh.common.remote.entities.Badminitionaccount</class>
         <class>com.dellnaresh.common.remote.entities.Player</class>
+        <class>com.dellnaresh.common.remote.entities.UserRoles</class>
+        <class>com.dellnaresh.common.remote.entities.Users</class>
         <properties>
             <property name="hibernate.show_sql" value="true" />
         </properties>
