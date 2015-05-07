@@ -1,6 +1,7 @@
 /**
  * Created by nareshm on 3/05/2015.
  */
+
 $(function () {
     $('.button-checkbox').each(function () {
 
@@ -66,3 +67,4 @@ $(function () {
         init();
     });
 });
+
