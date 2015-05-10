@@ -1,7 +1,7 @@
 package com.dellnaresh.controller.jaxrs;
 
-import com.dellnaresh.common.remote.RemotePlayerService;
 import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.Archive;
@@ -11,6 +11,8 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -20,15 +22,17 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by nareshm on 10/05/2015.
  */
 @RunWith(Arquillian.class)
+@RunAsClient
 public class CourtHireServiceTest {
     private static WebTarget target;
-//    @Deployment
+    Logger logger = LoggerFactory.getLogger(CourtHireServiceTest.class);
+    //    @Deployment
 //    public static Archive createDeployment()
 //    {
 //        final GenericArchive webResources = ShrinkWrap.create(GenericArchive.class)
@@ -63,7 +67,8 @@ public static Archive<?> createDeployment() {
     @Before
     public void setupClass() throws MalformedURLException {
         Client client = ClientBuilder.newClient();
-        target = client.target(URI.create(new URL(base, "web/hirecourt").toExternalForm()));
+        logger.debug("Base URL",base);
+        target = client.target(URI.create(new URL(base, "/web/hirecourt").toExternalForm()));
     }
     /**
      * Test of POST method, of class MyResource.
