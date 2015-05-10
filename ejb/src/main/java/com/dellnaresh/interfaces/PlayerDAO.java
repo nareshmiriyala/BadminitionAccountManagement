@@ -1,5 +1,6 @@
 package com.dellnaresh.interfaces;
 
+import com.dellnaresh.common.remote.entities.BadimintionHire;
 import com.dellnaresh.common.remote.entities.Player;
 
 /**
@@ -11,4 +12,6 @@ public interface PlayerDAO {
     public Player get(int id) throws Exception;
     public void update(Player player) throws Exception;
     public void delete(int id) throws Exception;
+    public void hireCourt(BadimintionHire hire);
+    public Player get(String username) throws Exception ;
 }

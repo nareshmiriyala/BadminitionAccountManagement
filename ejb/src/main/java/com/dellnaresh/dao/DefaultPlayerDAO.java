@@ -1,12 +1,19 @@
 package com.dellnaresh.dao;
 
+import com.dellnaresh.common.remote.entities.BadimintionHire;
 import com.dellnaresh.common.remote.entities.Player;
+import com.dellnaresh.common.remote.entities.Users;
 import com.dellnaresh.interfaces.PlayerDAO;
 
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.List;
 
 /**
  * Created by nareshm on 2/05/2015.
@@ -26,6 +33,16 @@ public class DefaultPlayerDAO implements PlayerDAO {
     }
 
     @Override
+    public Player get(String username) throws Exception {
+        TypedQuery<Users> query =
+                entityManager.createNamedQuery("Users.findByUsername", Users.class);
+        query.setParameter("username",username);
+        List<Users> results = query.getResultList();
+        Users users = results.get(0);
+        return entityManager.find(Player.class, users.getLogin());
+    }
+
+    @Override
     public void update(Player player) throws Exception {
 
     }
@@ -33,5 +50,10 @@ public class DefaultPlayerDAO implements PlayerDAO {
     @Override
     public void delete(int id) throws Exception {
 
+    }
+
+    @Override
+    public void hireCourt(BadimintionHire hire) {
+        entityManager.persist(hire);
     }
 }

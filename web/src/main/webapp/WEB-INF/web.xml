@@ -8,6 +8,11 @@
    <welcome-file-list>
        <welcome-file>/auth/index.html</welcome-file>
    </welcome-file-list>
+    <servlet>
+        <display-name>index</display-name>
+        <servlet-name>index</servlet-name>
+        <jsp-file>/auth/index.html</jsp-file>
+    </servlet>
     <security-constraint>
         <display-name>SecurityConstraint</display-name>
         <web-resource-collection>
