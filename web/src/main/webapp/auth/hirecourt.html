@@ -89,48 +89,48 @@
                     <label class="col-md-2 control-label">Court Name</label>
 
                     <div class="col-md-8">
-                        <input type="text" class="form-control" name="CourtName"
-                               ng-model="CourtName"/>
+                        <input type="text" class="form-control" name="courtName"
+                               ng-model="courtName"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label">Date Hired</label>
 
                     <div class="col-md-8">
-                        <input type="date" class="form-control" name="DateHired"
-                               ng-model="DateHired"/>
+                        <input type="date" class="form-control" name="dateHired"
+                               ng-model="dateHired"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label">Start Time</label>
 
                     <div class="col-md-8">
-                        <input type="datetime" class="form-control" name="StartTime"
-                               ng-model="StartTime"/>
+                        <input type="datetime" class="form-control" name="startTime"
+                               ng-model="startTime"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label">End Time</label>
 
                     <div class="col-md-8">
-                        <input type="datetime" class="form-control" name="EndTIme"
-                               ng-model="EndTime"/>
+                        <input type="datetime" class="form-control" name="endTime"
+                               ng-model="endTime"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label">Money Paid</label>
 
                     <div class="col-md-8">
-                        <input type="text" class="form-control" name="MoneyPaid"
-                               ng-model="MoneyPaid"/>
+                        <input type="text" class="form-control" name="moneyPaid"
+                               ng-model="moneyPaid"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-2 control-label">Player</label>
+                    <label class="col-md-2 control-label">payer</label>
 
                     <div class="col-md-8">
-                        <input type="text" class="form-control" name="Player"
-                               ng-model="Player"/>
+                        <input type="text" class="form-control" name="payer"
+                               ng-model="payer"/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -144,9 +144,9 @@
             <br><br>
             <table class="table">
                 <tr>
-                    <th>CourtName
+                    <th>courtName
                     </th>
-                    <th>DateHired
+                    <th>dateHired
                     </th>
                     <th>Start Time
                     </th>
@@ -157,24 +157,24 @@
                         Money Paid
                     </th>
                     <th>
-                        Player
+                        payer
                     </th>
                 </tr>
                 <tr ng-repeat='court in courts'>
-                    <td>{{court.CourtName}}
+                    <td>{{court.courtName}}
                     </td>
-                    <td>{{court.DateHired}}
+                    <td>{{court.dateHired}}
                     </td>
-                    <td>{{court.StartTime}}
-                    </td>
-                    <td>
-                        {{court.EndTime}}
+                    <td>{{court.startTime}}
                     </td>
                     <td>
-                        {{court.MoneyPaid}}
+                        {{court.endTime}}
                     </td>
                     <td>
-                        {{court.Player}}
+                        {{court.moneyPaid}}
+                    </td>
+                    <td>
+                        {{court.payer}}
                     </td>
                 </tr>
             </table>
