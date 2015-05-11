@@ -1,9 +1,10 @@
 package com.dellnaresh.ejb;
 
+import com.dellnaresh.common.remote.PlayerService;
 import com.dellnaresh.common.remote.RemotePlayerService;
 import com.dellnaresh.common.remote.entities.BadimintionHire;
 import com.dellnaresh.common.remote.entities.Player;
-import com.dellnaresh.interfaces.LocalPlayerService;
+import com.dellnaresh.common.remote.LocalPlayerService;
 import com.dellnaresh.interfaces.PlayerDAO;
 
 import javax.ejb.EJB;
@@ -15,9 +16,9 @@ import java.io.Serializable;
 /**
  * Created by nareshm on 2/05/2015.
  */
-@Stateless(name = "PlayerServiceEJB")
-@Remote
-public class BadminitionPlayerService implements RemotePlayerService, LocalPlayerService,Serializable {
+@Stateless(name = "BadminitionPlayerService")
+@EJB(name = "BadminitionPlayerService",beanInterface = RemotePlayerService.class)
+public class BadminitionPlayerService implements RemotePlayerService,PlayerService,Serializable {
     @Inject
     PlayerDAO playerDAO;
 

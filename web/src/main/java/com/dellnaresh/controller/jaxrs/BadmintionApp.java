@@ -6,6 +6,6 @@ import javax.ws.rs.core.Application;
 /**
  * Created by nareshm on 10/05/2015.
  */
-@ApplicationPath("/web")
+@ApplicationPath("web")
 public class BadmintionApp extends Application {
 }

@@ -40,13 +40,13 @@ public class CourtHireServlet extends HttpServlet {
         JSONParser parser = new JSONParser();
         JSONObject joPlayer = null;
         joPlayer = new JSONObject(sb.toString());
-        String countName = (String) joPlayer.get("countName");
+        String courtName = (String) joPlayer.get("courtName");
         Date dateHired = (Date) joPlayer.get("dateHired");
          Date stateTime = (Date) joPlayer.get("stateTime");
          Date endTime = (Date) joPlayer.get("endTime");
          long moneyPaid = (long) joPlayer.get("moneyPaid");
         BadimintionHire badimintionHire=new BadimintionHire();
-        badimintionHire.setCountName(countName);
+        badimintionHire.setCourtName(courtName);
         badimintionHire.setDateHired(dateHired);
         badimintionHire.setStartTime(stateTime);
         badimintionHire.setEndTime(endTime);
