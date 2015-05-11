@@ -12,6 +12,7 @@ import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by nareshm on 2/05/2015.
@@ -37,6 +38,11 @@ public class BadminitionPlayerService implements RemotePlayerService,PlayerServi
     @Override
     public Player getPlayer(String username) throws Exception {
         return playerDAO.get(username);
+    }
+
+    @Override
+    public List<BadimintionHire> getHiredCourts(int payerId) throws Exception {
+        return playerDAO.getCourts(payerId);
     }
 
 }

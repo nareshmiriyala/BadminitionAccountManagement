@@ -9,6 +9,7 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.resteasy.client.ClientResponse;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -23,10 +24,12 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
 import javax.xml.ws.Response;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -95,6 +98,13 @@ public static Archive<?> createDeployment() {
         System.out.println(post.getStatus());
         assertEquals("Status",post.getStatus(),200);
 
+    }
+    @Test
+    public void testGetJSON() throws Exception{
+
+        javax.ws.rs.core.Response response = target.request().get();
+        Object responseEntity = response.getEntity();
+        System.out.println(responseEntity);
     }
 
 

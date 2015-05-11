@@ -7,7 +7,9 @@ import org.slf4j.Logger;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 /**
  * Created by nareshm on 10/05/2015.
@@ -21,11 +23,18 @@ public class CourtHireService {
     RemotePlayerService remotePlayerService;
     // The Java method will process HTTP GET requests
     @GET
-    // The Java method will produce content identified by the MIME Media type "text/plain"
-    @Produces("text/plain")
-    public String getClichedMessage() {
+    @Produces("application/json")
+    public Response getHiredCourts() {
         // Return some cliched textual content
-        return "Hello World";
+        List<BadimintionHire> hiredCourts=null;
+        try {
+            hiredCourts = remotePlayerService.getHiredCourts(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        GenericEntity<List<BadimintionHire>> ge = new GenericEntity<List<BadimintionHire>>(hiredCourts){};
+
+        return Response.ok(ge).build();
     }
 
     @POST

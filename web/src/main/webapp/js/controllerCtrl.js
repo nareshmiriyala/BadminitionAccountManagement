@@ -15,38 +15,46 @@ angular.module('hireCourtApp',[])
     .controller('courtHireController',function($scope,$http){
         $scope.courtadded={};
 
-        $scope.courts=[
-            { 'courtName':'Endeavour Hills',
-                'dateHired': '10/05/2015',
-                'startTime': '08:30',
-                 'endTime':'10:30',
-                 'moneyPaid':'35.50',
-                  'payer':'Naresh'},
-            { 'courtName':'Endeavour Hills',
-                'dateHired': '10/05/2015',
-                'startTime': '08:30',
-                'endTime':'10:30',
-                'moneyPaid':'35.50',
-                'payer':'Naresh'},
-            { 'courtName':'Endeavour Hills',
-                'dateHired': '10/05/2015',
-                'startTime': '08:30',
-                'endTime':'10:30',
-                'moneyPaid':'35.50',
-                'payer':'Naresh'},
-            { 'courtName':'Endeavour Hills',
-                'dateHired': '10/05/2015',
-                'startTime': '08:30',
-                'endTime':'10:30',
-                'moneyPaid':'35.50',
-                'payer':'Vishwash'},
-            { 'courtName':'Endeavour Hills',
-                'dateHired': '10/05/2015',
-                'startTime': '08:30',
-                'endTime':'10:30',
-                'moneyPaid':'35.50',
-                'payer':'Kiriti'},
-        ];
+        //$scope.courts=[
+        //    { 'courtName':'Endeavour Hills',
+        //        'dateHired': '10/05/2015',
+        //        'startTime': '08:30',
+        //         'endTime':'10:30',
+        //         'moneyPaid':'35.50',
+        //          'payer':'Naresh'},
+        //    { 'courtName':'Endeavour Hills',
+        //        'dateHired': '10/05/2015',
+        //        'startTime': '08:30',
+        //        'endTime':'10:30',
+        //        'moneyPaid':'35.50',
+        //        'payer':'Naresh'},
+        //    { 'courtName':'Endeavour Hills',
+        //        'dateHired': '10/05/2015',
+        //        'startTime': '08:30',
+        //        'endTime':'10:30',
+        //        'moneyPaid':'35.50',
+        //        'payer':'Naresh'},
+        //    { 'courtName':'Endeavour Hills',
+        //        'dateHired': '10/05/2015',
+        //        'startTime': '08:30',
+        //        'endTime':'10:30',
+        //        'moneyPaid':'35.50',
+        //        'payer':'Vishwash'},
+        //    { 'courtName':'Endeavour Hills',
+        //        'dateHired': '10/05/2015',
+        //        'startTime': '08:30',
+        //        'endTime':'10:30',
+        //        'moneyPaid':'35.50',
+        //        'payer':'Kiriti'},
+        //];
+        $scope.courts=function() {
+            console.log("called get method");
+            $http({
+                method: 'get',
+                url: 'http://localhost:8080/web/hirecourt',
+                headers: {'Content-Type': 'application/json'}
+            });
+        };
         $scope.addCourt=function(){
             console.log("called method");
             $http({
