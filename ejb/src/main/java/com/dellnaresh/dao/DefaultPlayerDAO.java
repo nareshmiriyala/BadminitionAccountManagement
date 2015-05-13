@@ -50,7 +50,7 @@ public class DefaultPlayerDAO implements PlayerDAO {
         CriteriaQuery cq = criteriaBuilder.createQuery();
         Root from = cq.from(BadimintionHire.class);
         cq.select(from);
-        Predicate predicate1 = criteriaBuilder.ge(from.get("payer"), payerId);
+        Predicate predicate1 = criteriaBuilder.equal(from.get("payer"), new Player(payerId));
         cq.where(predicate1);
         return entityManager.createQuery(cq).getResultList();
     }
