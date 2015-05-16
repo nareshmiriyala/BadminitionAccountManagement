@@ -7,5 +7,5 @@ import javax.ws.rs.core.Application;
  * Created by nareshm on 10/05/2015.
  */
 @ApplicationPath("app")
-public class BadmintionApp extends Application {
+public class BadmintonApp extends Application {
 }

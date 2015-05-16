@@ -11,7 +11,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import com.dellnaresh.common.remote.entities.BadmintonHire;
-import com.dellnaresh.common.remote.entities.Badmintonaccount;
+import com.dellnaresh.common.remote.entities.BadmintonAccount;
 import com.dellnaresh.common.remote.entities.Player;
 import com.dellnaresh.dao.controller.exceptions.NonexistentEntityException;
 import java.util.List;
@@ -22,9 +22,9 @@ import javax.persistence.EntityManagerFactory;
  *
  * @author nareshm
  */
-public class BadmintonaccountJpaController implements Serializable {
+public class BadmintonAccountJpaController implements Serializable {
 
-    public BadmintonaccountJpaController(EntityManagerFactory emf) {
+    public BadmintonAccountJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -33,28 +33,28 @@ public class BadmintonaccountJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Badmintonaccount Badmintonaccount) {
+    public void create(BadmintonAccount BadmintonAccount) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            BadmintonHire hireId = Badmintonaccount.getHireId();
+            BadmintonHire hireId = BadmintonAccount.getHireId();
             if (hireId != null) {
                 hireId = em.getReference(hireId.getClass(), hireId.getId());
-                Badmintonaccount.setHireId(hireId);
+                BadmintonAccount.setHireId(hireId);
             }
-            Player playerId = Badmintonaccount.getPlayerId();
+            Player playerId = BadmintonAccount.getPlayerId();
             if (playerId != null) {
                 playerId = em.getReference(playerId.getClass(), playerId.getId());
-                Badmintonaccount.setPlayerId(playerId);
+                BadmintonAccount.setPlayerId(playerId);
             }
-            em.persist(Badmintonaccount);
+            em.persist(BadmintonAccount);
             if (hireId != null) {
-                hireId.getBadmintonaccountCollection().add(Badmintonaccount);
+                hireId.getBadmintonAccountCollection().add(BadmintonAccount);
                 hireId = em.merge(hireId);
             }
             if (playerId != null) {
-                playerId.getBadmintonaccountCollection().add(Badmintonaccount);
+                playerId.getBadmintonAccountCollection().add(BadmintonAccount);
                 playerId = em.merge(playerId);
             }
             em.getTransaction().commit();
@@ -65,48 +65,48 @@ public class BadmintonaccountJpaController implements Serializable {
         }
     }
 
-    public void edit(Badmintonaccount Badmintonaccount) throws NonexistentEntityException, Exception {
+    public void edit(BadmintonAccount BadmintonAccount) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Badmintonaccount persistentBadmintonaccount = em.find(Badmintonaccount.class, Badmintonaccount.getId());
-            BadmintonHire hireIdOld = persistentBadmintonaccount.getHireId();
-            BadmintonHire hireIdNew = Badmintonaccount.getHireId();
-            Player playerIdOld = persistentBadmintonaccount.getPlayerId();
-            Player playerIdNew = Badmintonaccount.getPlayerId();
+            BadmintonAccount persistentBadmintonAccount = em.find(BadmintonAccount.class, BadmintonAccount.getId());
+            BadmintonHire hireIdOld = persistentBadmintonAccount.getHireId();
+            BadmintonHire hireIdNew = BadmintonAccount.getHireId();
+            Player playerIdOld = persistentBadmintonAccount.getPlayerId();
+            Player playerIdNew = BadmintonAccount.getPlayerId();
             if (hireIdNew != null) {
                 hireIdNew = em.getReference(hireIdNew.getClass(), hireIdNew.getId());
-                Badmintonaccount.setHireId(hireIdNew);
+                BadmintonAccount.setHireId(hireIdNew);
             }
             if (playerIdNew != null) {
                 playerIdNew = em.getReference(playerIdNew.getClass(), playerIdNew.getId());
-                Badmintonaccount.setPlayerId(playerIdNew);
+                BadmintonAccount.setPlayerId(playerIdNew);
             }
-            Badmintonaccount = em.merge(Badmintonaccount);
+            BadmintonAccount = em.merge(BadmintonAccount);
             if (hireIdOld != null && !hireIdOld.equals(hireIdNew)) {
-                hireIdOld.getBadmintonaccountCollection().remove(Badmintonaccount);
+                hireIdOld.getBadmintonAccountCollection().remove(BadmintonAccount);
                 hireIdOld = em.merge(hireIdOld);
             }
             if (hireIdNew != null && !hireIdNew.equals(hireIdOld)) {
-                hireIdNew.getBadmintonaccountCollection().add(Badmintonaccount);
+                hireIdNew.getBadmintonAccountCollection().add(BadmintonAccount);
                 hireIdNew = em.merge(hireIdNew);
             }
             if (playerIdOld != null && !playerIdOld.equals(playerIdNew)) {
-                playerIdOld.getBadmintonaccountCollection().remove(Badmintonaccount);
+                playerIdOld.getBadmintonAccountCollection().remove(BadmintonAccount);
                 playerIdOld = em.merge(playerIdOld);
             }
             if (playerIdNew != null && !playerIdNew.equals(playerIdOld)) {
-                playerIdNew.getBadmintonaccountCollection().add(Badmintonaccount);
+                playerIdNew.getBadmintonAccountCollection().add(BadmintonAccount);
                 playerIdNew = em.merge(playerIdNew);
             }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = Badmintonaccount.getId();
-                if (findBadmintonaccount(id) == null) {
-                    throw new NonexistentEntityException("The Badmintonaccount with id " + id + " no longer exists.");
+                Long id = BadmintonAccount.getId();
+                if (findBadmintonAccount(id) == null) {
+                    throw new NonexistentEntityException("The BadmintonAccount with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -122,24 +122,24 @@ public class BadmintonaccountJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Badmintonaccount Badmintonaccount;
+            BadmintonAccount BadmintonAccount;
             try {
-                Badmintonaccount = em.getReference(Badmintonaccount.class, id);
-                Badmintonaccount.getId();
+                BadmintonAccount = em.getReference(BadmintonAccount.class, id);
+                BadmintonAccount.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The Badmintonaccount with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The BadmintonAccount with id " + id + " no longer exists.", enfe);
             }
-            BadmintonHire hireId = Badmintonaccount.getHireId();
+            BadmintonHire hireId = BadmintonAccount.getHireId();
             if (hireId != null) {
-                hireId.getBadmintonaccountCollection().remove(Badmintonaccount);
+                hireId.getBadmintonAccountCollection().remove(BadmintonAccount);
                 hireId = em.merge(hireId);
             }
-            Player playerId = Badmintonaccount.getPlayerId();
+            Player playerId = BadmintonAccount.getPlayerId();
             if (playerId != null) {
-                playerId.getBadmintonaccountCollection().remove(Badmintonaccount);
+                playerId.getBadmintonAccountCollection().remove(BadmintonAccount);
                 playerId = em.merge(playerId);
             }
-            em.remove(Badmintonaccount);
+            em.remove(BadmintonAccount);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -148,19 +148,19 @@ public class BadmintonaccountJpaController implements Serializable {
         }
     }
 
-    public List<Badmintonaccount> findBadmintonaccountEntities() {
-        return findBadmintonaccountEntities(true, -1, -1);
+    public List<BadmintonAccount> findBadmintonAccountEntities() {
+        return findBadmintonAccountEntities(true, -1, -1);
     }
 
-    public List<Badmintonaccount> findBadmintonaccountEntities(int maxResults, int firstResult) {
-        return findBadmintonaccountEntities(false, maxResults, firstResult);
+    public List<BadmintonAccount> findBadmintonAccountEntities(int maxResults, int firstResult) {
+        return findBadmintonAccountEntities(false, maxResults, firstResult);
     }
 
-    private List<Badmintonaccount> findBadmintonaccountEntities(boolean all, int maxResults, int firstResult) {
+    private List<BadmintonAccount> findBadmintonAccountEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Badmintonaccount.class));
+            cq.select(cq.from(BadmintonAccount.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -172,20 +172,20 @@ public class BadmintonaccountJpaController implements Serializable {
         }
     }
 
-    public Badmintonaccount findBadmintonaccount(Long id) {
+    public BadmintonAccount findBadmintonAccount(Long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Badmintonaccount.class, id);
+            return em.find(BadmintonAccount.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getBadmintonaccountCount() {
+    public int getBadmintonAccountCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Badmintonaccount> rt = cq.from(Badmintonaccount.class);
+            Root<BadmintonAccount> rt = cq.from(BadmintonAccount.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

@@ -61,7 +61,7 @@ public class CourtHireServiceTest {
 public static Archive<?> createDeployment() {
     return ShrinkWrap.create(WebArchive.class, "test.war")
 //            .addPackages(true,"com.dellnaresh")
-            .addClasses(CourtHireService.class, BadmintionApp.class)
+            .addClasses(CourtHireService.class, BadmintonApp.class)
             .addPackages(true, BadmintonHire.class.getPackage())
             .addPackages(true, BadmintonPlayerService.class.getPackage(), PlayerDAO.class.getPackage(), DefaultPlayerDAO.class.getPackage(), RemotePlayerService.class.getPackage())
             .addAsResource("test-persistence.xml", "META-INF/persistence.xml")

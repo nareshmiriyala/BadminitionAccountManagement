@@ -2,11 +2,11 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0">
-    <persistence-unit name="BadmintionAccountPU" transaction-type="JTA">
+    <persistence-unit name="BadmintonAccountPU" transaction-type="JTA">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <jta-data-source>java:jboss/datasources/BadmintionDS</jta-data-source>
+        <jta-data-source>java:jboss/datasources/BadmintonDS</jta-data-source>
         <class>com.dellnaresh.common.remote.entities.BadmintonHire</class>
-        <class>com.dellnaresh.common.remote.entities.Badmintonaccount</class>
+        <class>com.dellnaresh.common.remote.entities.BadmintonAccount</class>
         <class>com.dellnaresh.common.remote.entities.Player</class>
         <class>com.dellnaresh.common.remote.entities.UserRoles</class>
         <class>com.dellnaresh.common.remote.entities.Users</class>

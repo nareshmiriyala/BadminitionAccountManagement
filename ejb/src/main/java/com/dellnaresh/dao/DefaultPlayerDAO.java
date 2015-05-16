@@ -20,7 +20,7 @@ import java.util.List;
  */
 @Dependent
 public class DefaultPlayerDAO implements PlayerDAO {
-    @PersistenceContext(unitName = "BadmintionAccountPU")
+    @PersistenceContext(unitName = "BadmintonAccountPU")
     private EntityManager entityManager;
     @Override
     public void create(Player player) throws Exception {

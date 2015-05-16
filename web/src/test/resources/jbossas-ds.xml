@@ -4,8 +4,8 @@
              xsi:schemaLocation="
         http://www.jboss.org/ironjacamar/schema
         http://docs.jboss.org/ironjacamar/schema/datasources_1_0.xsd">
-    <datasource jta="true" jndi-name="java:jboss/datasources/BadmintionDS" pool-name="MySqlDS_Pool" enabled="true" use-java-context="true" use-ccm="true">
-        <connection-url>jdbc:mysql://localhost:3306/BadmintionAccount</connection-url>
+    <datasource jta="true" jndi-name="java:jboss/datasources/BadmintonDS" pool-name="MySqlDS_Pool" enabled="true" use-java-context="true" use-ccm="true">
+        <connection-url>jdbc:mysql://localhost:3306/BadmintonAccount</connection-url>
         <driver>mysql-connector-java-5.1.35.jar_com.mysql.jdbc.Driver_5_1</driver>
         <security>
             <user-name>root</user-name>
