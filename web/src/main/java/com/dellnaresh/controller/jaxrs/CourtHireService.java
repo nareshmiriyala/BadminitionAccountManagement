@@ -1,11 +1,13 @@
 package com.dellnaresh.controller.jaxrs;
 
+import com.dellnaresh.common.remote.PlayerService;
 import com.dellnaresh.common.remote.RemotePlayerService;
 import com.dellnaresh.common.remote.entities.BadimintionHire;
 import org.apache.log4j.spi.LoggerFactory;
 import org.slf4j.Logger;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.Response;
@@ -19,8 +21,8 @@ import java.util.List;
 public class CourtHireService {
     Logger logger = org.slf4j.LoggerFactory.getLogger(CourtHireService.class);
 
-    @EJB
-    RemotePlayerService remotePlayerService;
+    @EJB(beanInterface = RemotePlayerService.class)
+    PlayerService remotePlayerService;
     // The Java method will process HTTP GET requests
     @GET
     @Produces("application/json")

@@ -47,19 +47,23 @@ angular.module('hireCourtApp',[])
         //        'moneyPaid':'35.50',
         //        'payer':'Kiriti'},
         //];
-        $scope.courts=function() {
-            console.log("called get method");
-            $http({
-                method: 'get',
-                url: 'http://localhost:8080/web/hirecourt',
-                headers: {'Content-Type': 'application/json'}
+        $scope.courts=[];
+        $http.get('http://localhost:8080/web/app/hirecourt'). success(function(data, status, headers, config) {
+            // this callback will be called asynchronously
+            // when the response is available
+            console.log("Success Get Response");
+            $scope.courts=data;
+        }).
+            error(function(data, status, headers, config) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+                console.log("Error during Get call");
             });
-        };
         $scope.addCourt=function(){
             console.log("called method");
             $http({
                 method: 'POST',
-                url: 'http://localhost:8080/web/hirecourt',
+                url: 'http://localhost:8080/web/app/hirecourt',
                 headers: {'Content-Type': 'application/json'},
                 data:  $scope.courtadded
             });
