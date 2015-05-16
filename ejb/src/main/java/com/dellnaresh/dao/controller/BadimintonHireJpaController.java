@@ -128,8 +128,8 @@ public class BadimintonHireJpaController implements Serializable {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
                 Long id = badmintonHire.getId();
-                if (findBadimintionHire(id) == null) {
-                    throw new NonexistentEntityException("The badimintionHire with id " + id + " no longer exists.");
+                if (findBadmintonHire(id) == null) {
+                    throw new NonexistentEntityException("The badmintonHire with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -150,7 +150,7 @@ public class BadimintonHireJpaController implements Serializable {
                 badmintonHire = em.getReference(BadmintonHire.class, id);
                 badmintonHire.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The badimintionHire with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The badmintonHire with id " + id + " no longer exists.", enfe);
             }
             Player payer = badmintonHire.getPayer();
             if (payer != null) {
@@ -171,15 +171,15 @@ public class BadimintonHireJpaController implements Serializable {
         }
     }
 
-    public List<BadmintonHire> findBadimintionHireEntities() {
-        return findBadimintionHireEntities(true, -1, -1);
+    public List<BadmintonHire> findBadmintonHireEntities() {
+        return findBadmintonHireEntities(true, -1, -1);
     }
 
-    public List<BadmintonHire> findBadimintionHireEntities(int maxResults, int firstResult) {
-        return findBadimintionHireEntities(false, maxResults, firstResult);
+    public List<BadmintonHire> findBadmintonHireEntities(int maxResults, int firstResult) {
+        return findBadmintonHireEntities(false, maxResults, firstResult);
     }
 
-    private List<BadmintonHire> findBadimintionHireEntities(boolean all, int maxResults, int firstResult) {
+    private List<BadmintonHire> findBadmintonHireEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
@@ -195,7 +195,7 @@ public class BadimintonHireJpaController implements Serializable {
         }
     }
 
-    public BadmintonHire findBadimintionHire(Long id) {
+    public BadmintonHire findBadmintonHire(Long id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(BadmintonHire.class, id);
@@ -204,7 +204,7 @@ public class BadimintonHireJpaController implements Serializable {
         }
     }
 
-    public int getBadimintionHireCount() {
+    public int getBadmintonHireCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
