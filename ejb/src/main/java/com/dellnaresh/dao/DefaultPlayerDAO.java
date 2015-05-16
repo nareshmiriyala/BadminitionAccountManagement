@@ -1,6 +1,7 @@
 package com.dellnaresh.dao;
 
 import com.dellnaresh.common.remote.entities.BadmintonHire;
+import com.dellnaresh.common.remote.entities.BadmintonHire_;
 import com.dellnaresh.common.remote.entities.Player;
 import com.dellnaresh.common.remote.entities.Users;
 import com.dellnaresh.interfaces.PlayerDAO;
@@ -48,7 +49,7 @@ public class DefaultPlayerDAO implements PlayerDAO {
         CriteriaQuery cq = criteriaBuilder.createQuery();
         Root from = cq.from(BadmintonHire.class);
         cq.select(from);
-        Predicate predicate1 = criteriaBuilder.equal(from.get("payer"), new Player(payerId));
+        Predicate predicate1 = criteriaBuilder.equal(from.get(BadmintonHire_.payer), payerId);
         cq.where(predicate1);
         return entityManager.createQuery(cq).getResultList();
     }
