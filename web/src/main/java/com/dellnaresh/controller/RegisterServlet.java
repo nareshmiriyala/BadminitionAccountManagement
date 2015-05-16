@@ -1,5 +1,6 @@
 package com.dellnaresh.controller;
 
+import com.dellnaresh.common.remote.PlayerService;
 import com.dellnaresh.common.remote.RemotePlayerService;
 import com.dellnaresh.common.remote.entities.Player;
 import org.json.JSONObject;
@@ -23,8 +24,8 @@ import java.util.Date;
 @WebServlet(name = "RegisterServlet", urlPatterns = {"/register"})
 public class RegisterServlet extends HttpServlet {
 
-    @EJB
-    RemotePlayerService remotePlayerService;
+    @EJB(beanInterface = RemotePlayerService.class)
+    PlayerService remotePlayerService;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {

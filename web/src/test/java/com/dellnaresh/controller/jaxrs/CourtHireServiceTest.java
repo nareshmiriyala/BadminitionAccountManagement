@@ -1,15 +1,14 @@
 package com.dellnaresh.controller.jaxrs;
 
 import com.dellnaresh.common.remote.RemotePlayerService;
-import com.dellnaresh.common.remote.entities.BadimintionHire;
+import com.dellnaresh.common.remote.entities.BadmintonHire;
 import com.dellnaresh.dao.DefaultPlayerDAO;
-import com.dellnaresh.ejb.BadminitionPlayerService;
+import com.dellnaresh.ejb.BadmintonPlayerService;
 import com.dellnaresh.interfaces.PlayerDAO;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
-import org.jboss.resteasy.client.ClientResponse;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -24,12 +23,9 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.GenericType;
-import javax.xml.ws.Response;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -66,8 +62,8 @@ public static Archive<?> createDeployment() {
     return ShrinkWrap.create(WebArchive.class, "test.war")
 //            .addPackages(true,"com.dellnaresh")
             .addClasses(CourtHireService.class, BadmintionApp.class)
-            .addPackages(true, BadimintionHire.class.getPackage())
-            .addPackages(true, BadminitionPlayerService.class.getPackage(), PlayerDAO.class.getPackage(), DefaultPlayerDAO.class.getPackage(), RemotePlayerService.class.getPackage())
+            .addPackages(true, BadmintonHire.class.getPackage())
+            .addPackages(true, BadmintonPlayerService.class.getPackage(), PlayerDAO.class.getPackage(), DefaultPlayerDAO.class.getPackage(), RemotePlayerService.class.getPackage())
             .addAsResource("test-persistence.xml", "META-INF/persistence.xml")
             .addAsWebInfResource("jbossas-ds.xml")
             .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
@@ -79,7 +75,7 @@ public static Archive<?> createDeployment() {
     public void setupClass() throws MalformedURLException {
         Client client = ClientBuilder.newClient();
         logger.debug("Base URL",base);
-        target = client.target(URI.create(new URL(base, "web/hirecourt").toExternalForm()));
+        target = client.target(URI.create(new URL(base, "app/hirecourt").toExternalForm()));
     }
     /**
      * Test of POST method, of class MyResource.
@@ -96,7 +92,7 @@ public static Archive<?> createDeployment() {
         javax.ws.rs.core.Response post = target.request().post(Entity.json(json));
          logger.info("Status",post.getStatus());
         System.out.println(post.getStatus());
-        assertEquals("Status",post.getStatus(),200);
+        assertEquals("Status",200,post.getStatus());
 
     }
     @Test

@@ -5,8 +5,8 @@
     <persistence-unit name="BadmintionAccountPU" transaction-type="JTA">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <jta-data-source>java:jboss/datasources/BadmintionDS</jta-data-source>
-        <class>com.dellnaresh.common.remote.entities.BadimintionHire</class>
-        <class>com.dellnaresh.common.remote.entities.Badminitionaccount</class>
+        <class>com.dellnaresh.common.remote.entities.BadmintonHire</class>
+        <class>com.dellnaresh.common.remote.entities.Badmintonaccount</class>
         <class>com.dellnaresh.common.remote.entities.Player</class>
         <class>com.dellnaresh.common.remote.entities.UserRoles</class>
         <class>com.dellnaresh.common.remote.entities.Users</class>

@@ -1,6 +1,6 @@
 package com.dellnaresh.interfaces;
 
-import com.dellnaresh.common.remote.entities.BadimintionHire;
+import com.dellnaresh.common.remote.entities.BadmintonHire;
 import com.dellnaresh.common.remote.entities.Player;
 
 import java.util.List;
@@ -14,7 +14,7 @@ public interface PlayerDAO {
     public Player get(int id) throws Exception;
     public void update(Player player) throws Exception;
     public void delete(int id) throws Exception;
-    public void hireCourt(BadimintionHire hire);
+    public void hireCourt(BadmintonHire hire);
     public Player get(String username) throws Exception ;
-    public List<BadimintionHire> getCourts(int payerId) throws Exception;
+    public List<BadmintonHire> getCourts(int payerId) throws Exception;
 }

@@ -1,15 +1,13 @@
 package com.dellnaresh.dao;
 
-import com.dellnaresh.common.remote.entities.BadimintionHire;
+import com.dellnaresh.common.remote.entities.BadmintonHire;
 import com.dellnaresh.common.remote.entities.Player;
 import com.dellnaresh.common.remote.entities.Users;
 import com.dellnaresh.interfaces.PlayerDAO;
 
 import javax.enterprise.context.Dependent;
-import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -45,10 +43,10 @@ public class DefaultPlayerDAO implements PlayerDAO {
     }
 
     @Override
-    public List<BadimintionHire> getCourts(int payerId) throws Exception {
+    public List<BadmintonHire> getCourts(int payerId) throws Exception {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery cq = criteriaBuilder.createQuery();
-        Root from = cq.from(BadimintionHire.class);
+        Root from = cq.from(BadmintonHire.class);
         cq.select(from);
         Predicate predicate1 = criteriaBuilder.equal(from.get("payer"), new Player(payerId));
         cq.where(predicate1);
@@ -66,7 +64,7 @@ public class DefaultPlayerDAO implements PlayerDAO {
     }
 
     @Override
-    public void hireCourt(BadimintionHire hire) {
+    public void hireCourt(BadmintonHire hire) {
         entityManager.persist(hire);
     }
 }

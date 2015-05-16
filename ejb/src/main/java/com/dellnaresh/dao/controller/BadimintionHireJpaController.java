@@ -5,14 +5,14 @@
  */
 package com.dellnaresh.dao.controller;
 
-import com.dellnaresh.common.remote.entities.BadimintionHire;
+import com.dellnaresh.common.remote.entities.BadmintonHire;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import com.dellnaresh.common.remote.entities.Player;
-import com.dellnaresh.common.remote.entities.Badminitionaccount;
+import com.dellnaresh.common.remote.entities.Badmintonaccount;
 import com.dellnaresh.dao.controller.exceptions.NonexistentEntityException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -35,37 +35,37 @@ public class BadimintionHireJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(BadimintionHire badimintionHire) {
-        if (badimintionHire.getBadminitionaccountCollection() == null) {
-            badimintionHire.setBadminitionaccountCollection(new ArrayList<Badminitionaccount>());
+    public void create(BadmintonHire badmintonHire) {
+        if (badmintonHire.getBadmintonaccountCollection() == null) {
+            badmintonHire.setBadmintonaccountCollection(new ArrayList<Badmintonaccount>());
         }
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Player payer = badimintionHire.getPayer();
+            Player payer = badmintonHire.getPayer();
             if (payer != null) {
                 payer = em.getReference(payer.getClass(), payer.getId());
-                badimintionHire.setPayer(payer);
+                badmintonHire.setPayer(payer);
             }
-            Collection<Badminitionaccount> attachedBadminitionaccountCollection = new ArrayList<Badminitionaccount>();
-            for (Badminitionaccount badminitionaccountCollectionBadminitionaccountToAttach : badimintionHire.getBadminitionaccountCollection()) {
-                badminitionaccountCollectionBadminitionaccountToAttach = em.getReference(badminitionaccountCollectionBadminitionaccountToAttach.getClass(), badminitionaccountCollectionBadminitionaccountToAttach.getId());
-                attachedBadminitionaccountCollection.add(badminitionaccountCollectionBadminitionaccountToAttach);
+            Collection<Badmintonaccount> attachedBadmintonaccountCollection = new ArrayList<Badmintonaccount>();
+            for (Badmintonaccount BadmintonaccountCollectionBadmintonaccountToAttach : badmintonHire.getBadmintonaccountCollection()) {
+                BadmintonaccountCollectionBadmintonaccountToAttach = em.getReference(BadmintonaccountCollectionBadmintonaccountToAttach.getClass(), BadmintonaccountCollectionBadmintonaccountToAttach.getId());
+                attachedBadmintonaccountCollection.add(BadmintonaccountCollectionBadmintonaccountToAttach);
             }
-            badimintionHire.setBadminitionaccountCollection(attachedBadminitionaccountCollection);
-            em.persist(badimintionHire);
+            badmintonHire.setBadmintonaccountCollection(attachedBadmintonaccountCollection);
+            em.persist(badmintonHire);
             if (payer != null) {
-                payer.getBadimintionHireCollection().add(badimintionHire);
+                payer.getBadmintonHireCollection().add(badmintonHire);
                 payer = em.merge(payer);
             }
-            for (Badminitionaccount badminitionaccountCollectionBadminitionaccount : badimintionHire.getBadminitionaccountCollection()) {
-                BadimintionHire oldHireIdOfBadminitionaccountCollectionBadminitionaccount = badminitionaccountCollectionBadminitionaccount.getHireId();
-                badminitionaccountCollectionBadminitionaccount.setHireId(badimintionHire);
-                badminitionaccountCollectionBadminitionaccount = em.merge(badminitionaccountCollectionBadminitionaccount);
-                if (oldHireIdOfBadminitionaccountCollectionBadminitionaccount != null) {
-                    oldHireIdOfBadminitionaccountCollectionBadminitionaccount.getBadminitionaccountCollection().remove(badminitionaccountCollectionBadminitionaccount);
-                    oldHireIdOfBadminitionaccountCollectionBadminitionaccount = em.merge(oldHireIdOfBadminitionaccountCollectionBadminitionaccount);
+            for (Badmintonaccount BadmintonaccountCollectionBadmintonaccount : badmintonHire.getBadmintonaccountCollection()) {
+                BadmintonHire oldHireIdOfBadmintonaccountCollectionBadmintonaccount = BadmintonaccountCollectionBadmintonaccount.getHireId();
+                BadmintonaccountCollectionBadmintonaccount.setHireId(badmintonHire);
+                BadmintonaccountCollectionBadmintonaccount = em.merge(BadmintonaccountCollectionBadmintonaccount);
+                if (oldHireIdOfBadmintonaccountCollectionBadmintonaccount != null) {
+                    oldHireIdOfBadmintonaccountCollectionBadmintonaccount.getBadmintonaccountCollection().remove(BadmintonaccountCollectionBadmintonaccount);
+                    oldHireIdOfBadmintonaccountCollectionBadmintonaccount = em.merge(oldHireIdOfBadmintonaccountCollectionBadmintonaccount);
                 }
             }
             em.getTransaction().commit();
@@ -76,50 +76,50 @@ public class BadimintionHireJpaController implements Serializable {
         }
     }
 
-    public void edit(BadimintionHire badimintionHire) throws NonexistentEntityException, Exception {
+    public void edit(BadmintonHire badmintonHire) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            BadimintionHire persistentBadimintionHire = em.find(BadimintionHire.class, badimintionHire.getId());
-            Player payerOld = persistentBadimintionHire.getPayer();
-            Player payerNew = badimintionHire.getPayer();
-            Collection<Badminitionaccount> badminitionaccountCollectionOld = persistentBadimintionHire.getBadminitionaccountCollection();
-            Collection<Badminitionaccount> badminitionaccountCollectionNew = badimintionHire.getBadminitionaccountCollection();
+            BadmintonHire persistentBadmintonHire = em.find(BadmintonHire.class, badmintonHire.getId());
+            Player payerOld = persistentBadmintonHire.getPayer();
+            Player payerNew = badmintonHire.getPayer();
+            Collection<Badmintonaccount> BadmintonaccountCollectionOld = persistentBadmintonHire.getBadmintonaccountCollection();
+            Collection<Badmintonaccount> BadmintonaccountCollectionNew = badmintonHire.getBadmintonaccountCollection();
             if (payerNew != null) {
                 payerNew = em.getReference(payerNew.getClass(), payerNew.getId());
-                badimintionHire.setPayer(payerNew);
+                badmintonHire.setPayer(payerNew);
             }
-            Collection<Badminitionaccount> attachedBadminitionaccountCollectionNew = new ArrayList<Badminitionaccount>();
-            for (Badminitionaccount badminitionaccountCollectionNewBadminitionaccountToAttach : badminitionaccountCollectionNew) {
-                badminitionaccountCollectionNewBadminitionaccountToAttach = em.getReference(badminitionaccountCollectionNewBadminitionaccountToAttach.getClass(), badminitionaccountCollectionNewBadminitionaccountToAttach.getId());
-                attachedBadminitionaccountCollectionNew.add(badminitionaccountCollectionNewBadminitionaccountToAttach);
+            Collection<Badmintonaccount> attachedBadmintonaccountCollectionNew = new ArrayList<Badmintonaccount>();
+            for (Badmintonaccount BadmintonaccountCollectionNewBadmintonaccountToAttach : BadmintonaccountCollectionNew) {
+                BadmintonaccountCollectionNewBadmintonaccountToAttach = em.getReference(BadmintonaccountCollectionNewBadmintonaccountToAttach.getClass(), BadmintonaccountCollectionNewBadmintonaccountToAttach.getId());
+                attachedBadmintonaccountCollectionNew.add(BadmintonaccountCollectionNewBadmintonaccountToAttach);
             }
-            badminitionaccountCollectionNew = attachedBadminitionaccountCollectionNew;
-            badimintionHire.setBadminitionaccountCollection(badminitionaccountCollectionNew);
-            badimintionHire = em.merge(badimintionHire);
+            BadmintonaccountCollectionNew = attachedBadmintonaccountCollectionNew;
+            badmintonHire.setBadmintonaccountCollection(BadmintonaccountCollectionNew);
+            badmintonHire = em.merge(badmintonHire);
             if (payerOld != null && !payerOld.equals(payerNew)) {
-                payerOld.getBadimintionHireCollection().remove(badimintionHire);
+                payerOld.getBadmintonHireCollection().remove(badmintonHire);
                 payerOld = em.merge(payerOld);
             }
             if (payerNew != null && !payerNew.equals(payerOld)) {
-                payerNew.getBadimintionHireCollection().add(badimintionHire);
+                payerNew.getBadmintonHireCollection().add(badmintonHire);
                 payerNew = em.merge(payerNew);
             }
-            for (Badminitionaccount badminitionaccountCollectionOldBadminitionaccount : badminitionaccountCollectionOld) {
-                if (!badminitionaccountCollectionNew.contains(badminitionaccountCollectionOldBadminitionaccount)) {
-                    badminitionaccountCollectionOldBadminitionaccount.setHireId(null);
-                    badminitionaccountCollectionOldBadminitionaccount = em.merge(badminitionaccountCollectionOldBadminitionaccount);
+            for (Badmintonaccount BadmintonaccountCollectionOldBadmintonaccount : BadmintonaccountCollectionOld) {
+                if (!BadmintonaccountCollectionNew.contains(BadmintonaccountCollectionOldBadmintonaccount)) {
+                    BadmintonaccountCollectionOldBadmintonaccount.setHireId(null);
+                    BadmintonaccountCollectionOldBadmintonaccount = em.merge(BadmintonaccountCollectionOldBadmintonaccount);
                 }
             }
-            for (Badminitionaccount badminitionaccountCollectionNewBadminitionaccount : badminitionaccountCollectionNew) {
-                if (!badminitionaccountCollectionOld.contains(badminitionaccountCollectionNewBadminitionaccount)) {
-                    BadimintionHire oldHireIdOfBadminitionaccountCollectionNewBadminitionaccount = badminitionaccountCollectionNewBadminitionaccount.getHireId();
-                    badminitionaccountCollectionNewBadminitionaccount.setHireId(badimintionHire);
-                    badminitionaccountCollectionNewBadminitionaccount = em.merge(badminitionaccountCollectionNewBadminitionaccount);
-                    if (oldHireIdOfBadminitionaccountCollectionNewBadminitionaccount != null && !oldHireIdOfBadminitionaccountCollectionNewBadminitionaccount.equals(badimintionHire)) {
-                        oldHireIdOfBadminitionaccountCollectionNewBadminitionaccount.getBadminitionaccountCollection().remove(badminitionaccountCollectionNewBadminitionaccount);
-                        oldHireIdOfBadminitionaccountCollectionNewBadminitionaccount = em.merge(oldHireIdOfBadminitionaccountCollectionNewBadminitionaccount);
+            for (Badmintonaccount BadmintonaccountCollectionNewBadmintonaccount : BadmintonaccountCollectionNew) {
+                if (!BadmintonaccountCollectionOld.contains(BadmintonaccountCollectionNewBadmintonaccount)) {
+                    BadmintonHire oldHireIdOfBadmintonaccountCollectionNewBadmintonaccount = BadmintonaccountCollectionNewBadmintonaccount.getHireId();
+                    BadmintonaccountCollectionNewBadmintonaccount.setHireId(badmintonHire);
+                    BadmintonaccountCollectionNewBadmintonaccount = em.merge(BadmintonaccountCollectionNewBadmintonaccount);
+                    if (oldHireIdOfBadmintonaccountCollectionNewBadmintonaccount != null && !oldHireIdOfBadmintonaccountCollectionNewBadmintonaccount.equals(badmintonHire)) {
+                        oldHireIdOfBadmintonaccountCollectionNewBadmintonaccount.getBadmintonaccountCollection().remove(BadmintonaccountCollectionNewBadmintonaccount);
+                        oldHireIdOfBadmintonaccountCollectionNewBadmintonaccount = em.merge(oldHireIdOfBadmintonaccountCollectionNewBadmintonaccount);
                     }
                 }
             }
@@ -127,7 +127,7 @@ public class BadimintionHireJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = badimintionHire.getId();
+                Long id = badmintonHire.getId();
                 if (findBadimintionHire(id) == null) {
                     throw new NonexistentEntityException("The badimintionHire with id " + id + " no longer exists.");
                 }
@@ -145,24 +145,24 @@ public class BadimintionHireJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            BadimintionHire badimintionHire;
+            BadmintonHire badmintonHire;
             try {
-                badimintionHire = em.getReference(BadimintionHire.class, id);
-                badimintionHire.getId();
+                badmintonHire = em.getReference(BadmintonHire.class, id);
+                badmintonHire.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The badimintionHire with id " + id + " no longer exists.", enfe);
             }
-            Player payer = badimintionHire.getPayer();
+            Player payer = badmintonHire.getPayer();
             if (payer != null) {
-                payer.getBadimintionHireCollection().remove(badimintionHire);
+                payer.getBadmintonHireCollection().remove(badmintonHire);
                 payer = em.merge(payer);
             }
-            Collection<Badminitionaccount> badminitionaccountCollection = badimintionHire.getBadminitionaccountCollection();
-            for (Badminitionaccount badminitionaccountCollectionBadminitionaccount : badminitionaccountCollection) {
-                badminitionaccountCollectionBadminitionaccount.setHireId(null);
-                badminitionaccountCollectionBadminitionaccount = em.merge(badminitionaccountCollectionBadminitionaccount);
+            Collection<Badmintonaccount> BadmintonaccountCollection = badmintonHire.getBadmintonaccountCollection();
+            for (Badmintonaccount BadmintonaccountCollectionBadmintonaccount : BadmintonaccountCollection) {
+                BadmintonaccountCollectionBadmintonaccount.setHireId(null);
+                BadmintonaccountCollectionBadmintonaccount = em.merge(BadmintonaccountCollectionBadmintonaccount);
             }
-            em.remove(badimintionHire);
+            em.remove(badmintonHire);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -171,19 +171,19 @@ public class BadimintionHireJpaController implements Serializable {
         }
     }
 
-    public List<BadimintionHire> findBadimintionHireEntities() {
+    public List<BadmintonHire> findBadimintionHireEntities() {
         return findBadimintionHireEntities(true, -1, -1);
     }
 
-    public List<BadimintionHire> findBadimintionHireEntities(int maxResults, int firstResult) {
+    public List<BadmintonHire> findBadimintionHireEntities(int maxResults, int firstResult) {
         return findBadimintionHireEntities(false, maxResults, firstResult);
     }
 
-    private List<BadimintionHire> findBadimintionHireEntities(boolean all, int maxResults, int firstResult) {
+    private List<BadmintonHire> findBadimintionHireEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(BadimintionHire.class));
+            cq.select(cq.from(BadmintonHire.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -195,10 +195,10 @@ public class BadimintionHireJpaController implements Serializable {
         }
     }
 
-    public BadimintionHire findBadimintionHire(Long id) {
+    public BadmintonHire findBadimintionHire(Long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(BadimintionHire.class, id);
+            return em.find(BadmintonHire.class, id);
         } finally {
             em.close();
         }
@@ -208,7 +208,7 @@ public class BadimintionHireJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<BadimintionHire> rt = cq.from(BadimintionHire.class);
+            Root<BadmintonHire> rt = cq.from(BadmintonHire.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
