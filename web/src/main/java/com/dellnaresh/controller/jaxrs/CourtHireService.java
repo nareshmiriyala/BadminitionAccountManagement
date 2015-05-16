@@ -5,7 +5,14 @@ import com.dellnaresh.common.remote.RemotePlayerService;
 import com.dellnaresh.common.remote.entities.BadmintonHire;
 import org.slf4j.Logger;
 
+import javax.annotation.ManagedBean;
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Default;
+import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.Response;
@@ -14,13 +21,17 @@ import java.util.List;
 /**
  * Created by nareshm on 10/05/2015.
  */
-// The Java class will be hosted at the URI path "/courthire"
 @Path("hirecourt")
+@Stateless
 public class CourtHireService {
     Logger logger = org.slf4j.LoggerFactory.getLogger(CourtHireService.class);
 
     @EJB(beanInterface = RemotePlayerService.class)
     PlayerService remotePlayerService;
+
+    public CourtHireService(){
+        logger.debug(this.getClass().getClassLoader().toString());
+    }
     // The Java method will process HTTP GET requests
     @GET
     @Produces("application/json")

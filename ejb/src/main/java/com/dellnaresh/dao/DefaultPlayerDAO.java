@@ -5,10 +5,13 @@ import com.dellnaresh.common.remote.entities.BadmintonHire_;
 import com.dellnaresh.common.remote.entities.Player;
 import com.dellnaresh.common.remote.entities.Users;
 import com.dellnaresh.interfaces.PlayerDAO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.Dependent;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -21,6 +24,8 @@ import java.util.List;
  */
 @Dependent
 public class DefaultPlayerDAO implements PlayerDAO {
+    Logger logger= LoggerFactory.getLogger(DefaultPlayerDAO.class);
+
     @PersistenceContext(unitName = "BadmintonAccountPU")
     private EntityManager entityManager;
     @Override
@@ -45,13 +50,12 @@ public class DefaultPlayerDAO implements PlayerDAO {
 
     @Override
     public List<BadmintonHire> getCourts(int payerId) throws Exception {
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery cq = criteriaBuilder.createQuery();
-        Root from = cq.from(BadmintonHire.class);
-        cq.select(from);
-        Predicate predicate1 = criteriaBuilder.equal(from.get(BadmintonHire_.payer), payerId);
-        cq.where(predicate1);
-        return entityManager.createQuery(cq).getResultList();
+        CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();
+        cq.select(cq.from(BadmintonHire.class));
+        Query q = entityManager.createQuery(cq);
+        List resultList = q.getResultList();
+        System.out.println("Result List:"+resultList);
+        return resultList;
     }
 
     @Override

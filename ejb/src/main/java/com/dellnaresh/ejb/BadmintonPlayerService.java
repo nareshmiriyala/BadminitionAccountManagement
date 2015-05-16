@@ -5,8 +5,12 @@ import com.dellnaresh.common.remote.entities.BadmintonHire;
 import com.dellnaresh.common.remote.entities.Player;
 import com.dellnaresh.common.remote.LocalPlayerService;
 import com.dellnaresh.interfaces.PlayerDAO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.enterprise.inject.Default;
 import javax.inject.Inject;
 import java.util.List;
 
@@ -14,7 +18,9 @@ import java.util.List;
  * Created by nareshm on 2/05/2015.
  */
 @Stateless
+@Remote(RemotePlayerService.class)
 public class BadmintonPlayerService implements RemotePlayerService,LocalPlayerService {
+    Logger logger= LoggerFactory.getLogger(BadmintonPlayerService.class);
     @Inject
     PlayerDAO playerDAO;
 
@@ -37,7 +43,10 @@ public class BadmintonPlayerService implements RemotePlayerService,LocalPlayerSe
 
     @Override
     public List<BadmintonHire> getHiredCourts(int payerId) throws Exception {
-        return playerDAO.getCourts(payerId);
+
+        List<BadmintonHire> courts = playerDAO.getCourts(payerId);
+        logger.info("Courts",courts);
+        return courts;
     }
 
 }

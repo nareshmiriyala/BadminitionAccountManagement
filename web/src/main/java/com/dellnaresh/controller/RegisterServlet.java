@@ -6,6 +6,7 @@ import com.dellnaresh.common.remote.entities.Player;
 import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,6 +23,7 @@ import java.util.Date;
  * Created by nareshm on 2/05/2015.
  */
 @WebServlet(name = "RegisterServlet", urlPatterns = {"/register"})
+@RolesAllowed("Manager")
 public class RegisterServlet extends HttpServlet {
 
     @EJB(beanInterface = RemotePlayerService.class)
