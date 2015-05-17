@@ -90,7 +90,7 @@
 
                     <div class="col-md-8">
                         <input type="text" class="form-control" name="courtName"
-                               ng-model="courtName"/>
+                               ng-model="addedcourt.courtName" required/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -98,23 +98,23 @@
 
                     <div class="col-md-8">
                         <input type="date" class="form-control" name="dateHired"
-                               ng-model="dateHired"/>
+                               ng-model="addedcourt.dateHired" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label">Start Time</label>
 
                     <div class="col-md-8">
-                        <input type="datetime" class="form-control" name="startTime"
-                               ng-model="startTime"/>
+                        <input type="time" class="form-control" name="startTime"
+                               ng-model="addedcourt.startTime" required/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label">End Time</label>
 
                     <div class="col-md-8">
-                        <input type="datetime" class="form-control" name="endTime"
-                               ng-model="endTime"/>
+                        <input type="time" class="form-control" name="endTime"
+                               ng-model="addedcourt.endTime" required/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -122,15 +122,15 @@
 
                     <div class="col-md-8">
                         <input type="text" class="form-control" name="moneyPaid"
-                               ng-model="moneyPaid"/>
+                               ng-model="addedcourt.moneyPaid" required/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-2 control-label">payer</label>
+                    <label class="col-md-2 control-label">Payer ID</label>
 
                     <div class="col-md-8">
-                        <input type="text" class="form-control" name="payer"
-                               ng-model="payer"/>
+                        <input type="number" class="form-control" name="payer"
+                               ng-model="addedcourt.payer" required/>
                     </div>
                 </div>
                 <div class="form-group">
