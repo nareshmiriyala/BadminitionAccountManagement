@@ -163,7 +163,7 @@
                 <tr ng-repeat='court in courts'>
                     <td>{{court.courtName}}
                     </td>
-                    <td>{{court.dateHired}}
+                    <td>{{court.dateHired |date:medium}}
                     </td>
                     <td>{{court.startTime}}
                     </td>
