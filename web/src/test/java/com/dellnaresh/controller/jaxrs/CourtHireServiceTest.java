@@ -37,30 +37,10 @@ import static org.junit.Assert.assertEquals;
 public class CourtHireServiceTest {
     private static WebTarget target;
     Logger logger = LoggerFactory.getLogger(CourtHireServiceTest.class);
-    //    @Deployment
-//    public static Archive createDeployment()
-//    {
-//        final GenericArchive webResources = ShrinkWrap.create(GenericArchive.class)
-//                .as(ExplodedImporter.class)
-//                .importDirectory("src/main/webapp")
-//                .as(GenericArchive.class);
-//        final File[] seleniumApi = Maven.resolver()
-//                .loadPomFromFile("pom.xml")
-//                .resolve("org.seleniumhq.selenium:selenium-api:2.35.0")
-//                .withTransitivity()
-//                .asFile();
-//        return ShrinkWrap.create(WebArchive.class, CourtHireServiceTest.class.getSimpleName() + ".war")
-//                .addClasses(CourtHireService.class, RemotePlayerService.class)
-//                .addAsResource("META-INF/persistence.xml")
-//                .addAsWebInfResource("enforce-beans.xml", "jboss-all.xml")
-//                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
-//                .addAsLibraries(seleniumApi)
-//                .merge(webResources);
-//    }
+
 @Deployment
 public static Archive<?> createDeployment() {
     return ShrinkWrap.create(WebArchive.class, "test.war")
-//            .addPackages(true,"com.dellnaresh")
             .addClasses(CourtHireService.class, BadmintonApp.class)
             .addPackages(true, BadmintonHire.class.getPackage())
             .addPackages(true, BadmintonPlayerService.class.getPackage(), PlayerDAO.class.getPackage(), DefaultPlayerDAO.class.getPackage(), RemotePlayerService.class.getPackage())
