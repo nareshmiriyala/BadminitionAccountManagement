@@ -344,6 +344,7 @@
     <profiles>
         <profile>
             <id>wildfly-embedded-arquillian</id>
+           
             <properties>
                 <browser>chromium-browser</browser>
                 <serverProfile>standalone-full.xml</serverProfile>
@@ -491,6 +492,9 @@
 
         <profile>
             <id>wildfly-managed-arquillian</id>
+             <activation>
+            <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
                 <browser>chromium-browser</browser>
                 <serverProfile>standalone-full.xml</serverProfile>
